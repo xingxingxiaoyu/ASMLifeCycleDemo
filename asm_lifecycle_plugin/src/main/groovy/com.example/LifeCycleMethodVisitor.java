@@ -1,5 +1,6 @@
 package com.example;
 
+import org.objectweb.asm.AnnotationVisitor;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 
@@ -27,5 +28,10 @@ public class LifeCycleMethodVisitor extends MethodVisitor {
         mv.visitLdcInsn(mClassName + " " + mMethodName);
         mv.visitMethodInsn(Opcodes.INVOKESTATIC, "android/util/Log", "i", "(Ljava/lang/String;Ljava/lang/String;)I", false);
         mv.visitInsn(Opcodes.POP);
+    }
+
+    @Override
+    public AnnotationVisitor visitAnnotation(String descriptor, boolean visible) {
+        return super.visitAnnotation(descriptor, visible);
     }
 }

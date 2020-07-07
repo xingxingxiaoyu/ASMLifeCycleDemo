@@ -47,10 +47,11 @@ public class LifeCycleTransform extends Transform {
         inputs.each { input ->
                 input.jarInputs.each { JarInput jarInput ->
                     File file = jarInput.file
-                    System.out.println("find jar input: " + file.name)
+                    System.out.println("find jar input: " + file.path)
                     def dest = outputProvider.getContentLocation(jarInput.name,
                             jarInput.contentTypes,
                             jarInput.scopes, Format.JAR)
+                    System.out.println("copy jar to: " + dest)
                     FileUtils.copyFile(file, dest)
                 }
 
@@ -58,7 +59,7 @@ public class LifeCycleTransform extends Transform {
                     File dir = directoryInput.file
                     if (dir) {
                         dir.traverse(type: FileType.FILES, nameFilter: ~/.*\.class/) { file ->
-                            System.out.println("find class:" + file.name)
+                            System.out.println("find class:" + file.path)
 
                             def reader = new ClassReader(file.bytes)
                             def writer = new ClassWriter(reader, ClassWriter.COMPUTE_MAXS)
