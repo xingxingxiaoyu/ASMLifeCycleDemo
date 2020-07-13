@@ -24,5 +24,11 @@
       <version>7.1</version>
       <scope>runtime</scope>
     </dependency>
+    <dependency>
+      <groupId>org.ow2.asm</groupId>
+      <artifactId>asm-util</artifactId>
+      <version>7.1</version>
+      <scope>runtime</scope>
+    </dependency>
   </dependencies>
 </project>

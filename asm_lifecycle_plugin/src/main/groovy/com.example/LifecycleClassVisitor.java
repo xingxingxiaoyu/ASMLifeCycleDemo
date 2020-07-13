@@ -32,7 +32,7 @@ public class LifecycleClassVisitor extends ClassVisitor {
         MethodVisitor methodVisitor = super.visitMethod(access, name, descriptor, signature, exceptions);
         if (mSuperName.equals("androidx/appcompat/app/AppCompatActivity")) {
             if (name.equals("onCreate")) {
-                return new LifeCycleMethodVisitor(methodVisitor, mName, name);
+                return new TimeMethodVisitor(methodVisitor, mName, name);
             }
         }
         return methodVisitor;
